@@ -1,0 +1,1 @@
+A multimodal AI that reads the physical world aloud, empowering independence for the visually impaired.

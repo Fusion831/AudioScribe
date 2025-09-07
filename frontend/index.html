@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AudioScribe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>AudioScribe</h1>
+            <p>Your guide to the physical world.</p>
+        </header>
+
+        <section class="card">
+            <label for="imageUpload" class="upload-label">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Circle-icons-camera.svg/1024px-Circle-icons-camera.svg.png" alt="Camera Icon" class="camera-icon">
+                <span>Upload a Photo</span>
+            </label>
+            <input type="file" id="imageUpload" accept="image/*" aria-label="Upload a photo for analysis">
+        </section>
+
+        <!-- Status Area for Screen Readers and Visual Feedback -->
+        <section id="statusArea" class="status" role="status" aria-live="polite">
+            <p id="statusText">Please upload a photo of a product or document.</p>
+            <div id="loader" class="loader" hidden></div>
+        </section>
+
+        <!-- Area for interactive follow-up buttons -->
+        <section id="interactive-area"></section>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
