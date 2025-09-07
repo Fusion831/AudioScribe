@@ -5,6 +5,8 @@ from PIL import Image
 import io
 import logging
 
+from ai import ph3_instance, THE_PROMPT
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -41,12 +43,19 @@ async def describe_image(file: UploadFile = File(...)):
         logger.info(f"Image format: {image.format}, size: {image.size}, mode: {image.mode}")
 
         #TODO: AI model to integrate here
-        final_description = "A placeholder description of the image."
+        final_description = ph3_instance.analyze_image(image, prompt=THE_PROMPT)
+        
         logger.info(f"Generated description: {final_description}")
+        
+        
         return {"description": final_description}
+    except RuntimeError as e:
+        logger.error(f"Runtime error: {e}")
+        raise HTTPException(status_code=503, detail="AI service is currently unavailable.")
     except Exception as e:
         logger.error(f"Error processing image: {e}")
         raise HTTPException(status_code=500, detail="An error occurred while processing the image.")
+    
 
 
 @app.get("/")
